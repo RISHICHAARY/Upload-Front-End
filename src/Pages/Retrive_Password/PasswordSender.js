@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import { useNavigate , useLocation } from 'react-router-dom';
 import { useEffect , useState } from 'react';
-import "./Login.css";
+import '../../Styles/General2.css';
 
 function Upload_User(){
 

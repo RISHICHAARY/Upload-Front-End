@@ -1,14 +1,14 @@
 import { useState , useEffect } from 'react';
 import { ref , uploadBytes , getDownloadURL } from 'firebase/storage';
-import { storage } from './firebase';
-import { useLocation , Link } from 'react-router-dom';
+import { storage } from '../../firebase';
+import { useLocation , Link , useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 import React from 'react';
 //import { v4 } from 'uuid';
 
-import NavBar from './Navbar';
+import NavBar from '../../Components/index';
 
-import './Login.css';
+import './Home.css'
 
 function Upload(){
 
@@ -20,6 +20,7 @@ function Upload(){
 	const [ Punch , setPunch ] = useState(null);
 
 	const Location = useLocation();
+	const Navigate = useNavigate();
 
 	const verify = () =>{
 		if(File === null){
@@ -53,7 +54,7 @@ function Upload(){
 				FileUrls.splice(i,1);
 			}
 		}
-		Axios.put("http://localhost:3001/deleteMe" , {id:Location.state.id , file : FileUrls}).then(()=>{
+		Axios.put("https://angry-bee-glasses.cyclic.app/deleteMe" , {id:Location.state.id , file : FileUrls}).then(()=>{
 			alert("Deleted")
 			setLoader(false);
 		});
@@ -66,8 +67,8 @@ function Upload(){
 		const FileRef = ref(storage , `${Location.state.name}/${File.name}`);
 		uploadBytes(FileRef , File).then((FileData) => {
 			getDownloadURL(FileData.ref).then((url) => {
-				Axios.put("http://localhost:3001/addFile" , {user: Location.state.user , id:Location.state.id , file : url , file_name : FileData.ref.name}).then(() => {
-					Axios.put("http://localhost:3001/getUsers" , {id : Location.state.id}).then((response)=>{
+				Axios.put("https://angry-bee-glasses.cyclic.app/addFile" , {user: Location.state.user , id:Location.state.id , file : url , file_name : FileData.ref.name}).then(() => {
+					Axios.put("https://angry-bee-glasses.cyclic.app/getUsers" , {id : Location.state.id}).then((response)=>{
 						setFileUrls(response.data.Files);
 						setLoader(false);
 					});	
@@ -80,7 +81,7 @@ function Upload(){
 		() =>{
 			if(Location.state !== null){
 				setLoader(true);
-				Axios.put("http://localhost:3001/getUsers" , {id : Location.state.id}).then((response)=>{
+				Axios.put("https://angry-bee-glasses.cyclic.app/getUsers" , {id : Location.state.id}).then((response)=>{
 					setFileUrls(response.data.Files);
 					setLoader(false);
 				})
@@ -91,6 +92,11 @@ function Upload(){
 
 	return(
 		<>
+		<div className="BG">
+			<div className="BG2"></div>
+			<div className="clear"></div>
+		</div>
+		<div id="Home">
 			{
 				(Loader)?<div class="loader"></div>:
 				<>
@@ -101,26 +107,30 @@ function Upload(){
 					{
 						(Location.state === null)?
 						<>
-							<p className='files-label'>Login To Start Accessing Your Own Cloud Space.</p>
-							<div className='overall'>
-								<div className='main-container-Main'>
-									<div className='container'>
-										<div className="container sub-container-1 float-start">
-											<p className="label-log-attributes">
-												UPLOAD YOUR FILE:
-											</p>
-											<br></br>
-											<input type="file" placeholder="Any Thing..." className='input-log-attributes w-100'
-											onChange={(e) => {setFile(e.target.files[0])}}></input>
-											<input type="checkbox" className='files-checkbox' onChange={(e)=>{setStabilize(e.target.value)}} value="Stabilize" /><p className='files-p-tag others'>Stabilize</p>
-											<input type="checkbox" className='files-checkbox' onChange={(e)=>{setPunch(e.target.value)}} value="Punch Hole" /><p className='files-p-tag others'>Punch Hole</p>
-											<button className='general-button final-button col-12' onClick={()=>{verify()}}>PRINT
-											<i class="fi fi-rr-upload end-icons"></i></button>
+							<div className='SignIn'>
+								<p>Make Pinting Effortless and Advanced</p>
+								<button className='Sign-Button' onClick={()=>{Navigate('/Login')}}>SIGN IN</button>
+							</div>
+							<div className='col-4 Upload-Div'>
+								<div className='Upload-Icon'>
+									<i className="fi fi-rr-add-document Upload-Icon"></i>
+								</div>
+								<div className='Upload-Others'>
+									<input type="file"
+									onChange={(e) => {setFile(e.target.files[0])}}></input>
+									{
+										(File !== null)?
+										<div className='Button-Div'>
+											<button className='Print-Button' onClick={()=>{verify()}}>PRINT
+											<i class="fi fi-ss-print end-icons"></i></button>
 										</div>
-									</div>
-									<div className="clear"></div>
+										:<></>
+									}
 								</div>
-								</div>
+							</div>
+							<div className='col-4 Content'>
+								<p>PRINTING</p> <p>MADE</p> <p>EASY &</p><p>SECURE</p>
+							</div>
 						</>
 						:
 						<>
@@ -146,29 +156,38 @@ function Upload(){
 								<p className='files-label'>No Files Yet</p>
 							</>
 							:
-							<div className='overall'>
-								<div className='main-container-Main w-100'>
-									<div className='container'>
-										<div className="container sub-container-1 float-start">
-											<p className="label-log-attributes">
-												UPLOAD YOUR FILE:
-											</p>
-											<br></br>
-											<input type="file" placeholder="Any Thing..." className='input-log-attributes w-100'
-											onChange={(e) => {setFile(e.target.files[0])}}></input>
-											<button className='general-button final-button col-12' onClick={upload}>UPLOAD
-											<i class="fi fi-rr-upload end-icons"></i></button>
-										</div>
-									</div>
-									<div className="clear"></div>
+							<>
+							<div className='row w-100'>
+							<div className='col-6 User-Div'>
+								<div className='User-Div2'>
+									<p className='User-Data'>{Location.state.name}</p>
+									<p className='User-Data usr'>{Location.state.user}</p>
 								</div>
+							</div>
+							<div className='col-4 Upload-Div-1'>
+								<div className='Upload-Icon'>
+									<i className="fi fi-rr-add-document Upload-Icon"></i>
+								</div>
+								<div className='Upload-Others'>
+									<input type="file"
+									onChange={(e) => {setFile(e.target.files[0])}}></input>
+									{
+										(File !== null)?
+										<div className='Button-Div'>
+											<button className='Print-Button' onClick={()=>{verify()}}>PRINT
+											<i class="fi fi-ss-print end-icons"></i></button>
+										</div>
+										:<></>
+									}
+								</div></div>
+							</div>
 								<div className='bas'>
 								<p className='files-label1'>YOUR FILES</p>
 								<div>
 								{
 									FileUrls.map((url) => {
 									return (
-										<div className='container-fluid w-100'>
+										<div className='container-fluid'>
 											<div className='container w-75 title'>
 												<p className='files-p-tag name'>{url.name}</p>
 											</div>
@@ -177,8 +196,6 @@ function Upload(){
 												<i class="fi fi-bs-eye end-icons"></i></a>
 												<Link className='files-a-tag-print' target="_blank" to="/View" onClick={()=>{run()}}><p className='files-p-tag'>PRINT</p>
 												<i class="fi fi-rr-print end-icons"></i></Link><br className='br'/>
-												<input type="checkbox" className='files-checkbox' onChange={(e)=>{setStabilize(e.target.value)}} value="Stabilize" /><p className='files-p-tag others'>Stabilize</p>
-												<input type="checkbox" className='files-checkbox' onChange={(e)=>{setPunch(e.target.value)}} value="Punch Hole" /><p className='files-p-tag others'>Punch Hole</p>
 												<button className='general-button delete' onClick={() => {
 													Delete(url.url)
 												}}><i class="fi fi-rr-trash"></i></button>
@@ -191,13 +208,14 @@ function Upload(){
 								}
 								</div>
 								</div>
-							</div>
+							</>
 							}
+							
 						</>
 					}
 				</>
 			}
-		</>
+		</div></>
 		);
 
 }

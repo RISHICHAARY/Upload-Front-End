@@ -1,7 +1,7 @@
 import { useState , useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Axios from 'axios';
-import './Login.css';
+import '../../Styles/General2.css';
 
 function Register()
 {
@@ -73,26 +73,12 @@ function Register()
         }
     }
     return(
-        <>{
-            (Loader)?
-            <div className='loader-main'>
-                <div className="loader"></div>
-            </div>
-            :
-            <div className='overall-log'>
-                <p className="header">Upload</p>
-                <div className=" main-container">
-                    <div className="container">
-                        <button className="float-start general-button active-button" 
-                            onClick={()=>{Navigate("/Login");}}>
-                            LOGIN
-                            <i className="fi fi-ss-user end-icons" ></i>
-                        </button>
-                        <button className="float-end general-button disabled-button" disabled>
-                            REGISTER
-                            <i className="fi fi-ss-user-add end-icons"></i>
-                        </button>
-                        <div className="container sub-container-1 float-start">
+        <div id='Home'>
+            <div className='overall'>
+                <div className="w-75">
+                    <div className="">
+                    <p className="Login-Header">SIGN UP</p>
+                        <div className="">
                             <div className="container row p-0">
                                 <div className="col-12 float-start">
                                     <p className="label-attributes">
@@ -104,7 +90,7 @@ function Register()
                                         onChange={(event)=>{setName(event.target.value)}} required>
                                     </input>
                                 </div>
-                                <div className="col-4">
+                                <div className="col-4 min-input">
                                     <p className="label-attributes">
                                         GENDER:
                                     </p>
@@ -117,7 +103,7 @@ function Register()
                                         <option className="option-attributes">NOT PREFER TO TELL</option>
                                     </select>
                                 </div>
-                                <div className="col-4">
+                                <div className="col-4 min-input">
                                     <p className="label-attributes">
                                         AGE:
                                     </p>
@@ -126,7 +112,7 @@ function Register()
                                         onChange={(event)=>{setAge(event.target.value)}} required>
                                     </input>
                                 </div>
-                                <div className="col-4">
+                                <div className="col-4 min-input">
                                     <p className="label-attributes">
                                         DOB:
                                     </p>
@@ -134,7 +120,7 @@ function Register()
                                     <input type="date" className="input-attributes w-100" onChange={(event)=>{setDOB(event.target.value)}} required>
                                     </input>
                                 </div>
-                                <div className="col-6 float-start">
+                                <div className="col-6 min-input-2 float-start">
                                     <p className="label-attributes">
                                         E-MAIL:
                                     </p>
@@ -143,7 +129,7 @@ function Register()
                                         onChange={(event)=>{setEmail(event.target.value)}} required>
                                     </input>
                                 </div>
-                                <div className="col-6 float-end">
+                                <div className="col-6 min-input-2 float-end">
                                     <p className="label-attributes">
                                         MOBILE NO:
                                     </p>
@@ -165,10 +151,8 @@ function Register()
                                 </div>
                             </div>
                             <button className="final-button general-button" onClick={Decide}>
-                                <p className="final-label">
                                     REGISTER
                                     <i className="fi fi-br-angle-right end-icons-err"></i>
-                                </p>
                             </button>
                         </div>
                     </div>
@@ -176,8 +160,7 @@ function Register()
                 </div>
                 <div className="clear"></div>
             </div>
-            }
-        </>
+        </div>
     );
 };
 

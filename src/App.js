@@ -1,13 +1,13 @@
 import {BrowserRouter as Router , Route , Routes} from 'react-router-dom';
 
 import './App.css';
-import Upload from './upload';
-import Login from './Login';
-import Register from './Register';
-import Verification from './Verification';
+import Upload from './Pages/Home';
+import Login from './Pages/Login/Login';
+import Register from './Pages/Register/Register';
+import Verification from './Pages/Register/Verification';
 import View from './View';
-import ForgotPassword from './PasswordValidator';
-import SendPassword from './PasswordSender';
+import ForgotPassword from './Pages/Retrive_Password/PasswordValidator';
+import SendPassword from './Pages/Retrive_Password/PasswordSender';
 
 function App() {
   return (

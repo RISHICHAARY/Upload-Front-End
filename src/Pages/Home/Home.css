@@ -1,0 +1,165 @@
+#Home{
+    padding-top: 6rem;
+}
+
+.row{
+    padding: 0.5rem;
+}
+
+.Upload-Div{
+    background-color: rgba(255,255,255, 0.8);
+    backdrop-filter: blur(8px);
+    border-radius: 10px;
+    padding: auto 1rem;
+    position: fixed;
+    right: 10%;
+    bottom: 10%;
+    box-shadow: 0 0 1rem;
+}
+
+.Upload-Div-1{
+    background-color: rgba(255,255,255, 0.8);
+    backdrop-filter: blur(8px);
+    border-radius: 10px;
+    padding: auto 1rem;
+    box-shadow: 0 0 1rem;
+    margin: 1rem;
+}
+
+.Content{
+    position: fixed;
+    color: #146C94;
+    text-shadow: 0 0.4rem 0.2rem;
+    left: 5%;
+    bottom: 10%;
+    font-size: 4.5rem;
+    font-family: 'Courier';
+    text-align: left;
+}
+
+.SignIn{
+    position: fixed;
+    top: 30%;
+    right: 15.5%;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.Upload-Icon{
+    font-size: 5rem;
+    color: #19A7CE;
+}
+
+.Button-Div{
+    padding: 1rem;
+    display: table;
+    width: 100%;
+    text-align: center;
+}
+
+.Print-Button{
+    display: table-cell;
+    vertical-align: middle;
+    justify-self: center;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    background-color: #F7D060;
+    padding: 0.5rem;
+    border-radius: 10px;
+    transition: background .2s ease-in-out;
+
+}
+
+.Spl{
+    font-family: 'Bruno Ace', cursive;
+}
+
+.Sign-Button{
+    font-family: 'Bruno Ace', cursive;
+    border: 0.2rem solid #F7D060;
+    border-radius: 10px;
+    color: #F7D060;
+    background-color: transparent;
+    transition-duration: 0.5s;
+}
+
+.Sign-Button:hover{
+    outline: none;
+    color: #F3E99F;
+    border: 0.2rem solid #F3E99F;
+}
+
+.BG{
+width: 100%;
+background-color: #97DEFF;
+border-radius: 0 20% 70% 0;
+position: fixed;
+z-index: -1;
+}
+
+.BG2{
+width: 100%;
+height: 100vh;
+border-radius: 50% 0 80% 0% ;
+background-color: #C9EEFF;
+}
+
+.clear{
+clear: both;
+}
+
+.Print-Button:hover{
+    background-color: #F3E99F;
+}
+
+input[type=file] {
+    font-size: 1rem;
+    width: 350px;
+    max-width: 100%;
+    color: #444;
+    padding: 5px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #555;
+    margin-bottom: 1rem;
+  }
+  
+  input[type=file]::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: #146C94;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+  }
+  
+  input[type=file]::file-selector-button:hover {
+    background: #19A7CE;
+  }
+
+  .User-Div{
+    display: table;
+    text-align: center;
+  }
+
+  .User-Data{
+    color: #146C94;
+    font-size: 2rem;
+  }
+
+  .User-Div2{
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .User-Icon{
+    font-size: 7em;
+    text-align: right;
+  }
+
+  .usr{
+    font-size: 1rem;
+  }

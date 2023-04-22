@@ -1,7 +1,7 @@
 import { useState , useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Axios from 'axios';
-import './Login.css';
+import '../../Styles/General2.css';
 
 function RetrivePassword(){
     const [ Username , setUsername ] = useState (null );
